@@ -37,7 +37,8 @@ console.log("Running a GraphQL API server at http://localhost:4000/graphql");
 // // Construct a schema, using GraphQL schema language
 // var schema = buildSchema(`
 //   type Query {
-//     hello: String
+//     hello: String,
+//     hi: String
 //   }
 // `);
 
@@ -46,12 +47,23 @@ console.log("Running a GraphQL API server at http://localhost:4000/graphql");
 // 	hello: () => {
 // 		return "Hello world!";
 // 	},
+// 	hi: () => {
+// 		return "Hi world!";
+// 	},
 // };
 
 // // Run the GraphQL query '{ hello }' and print out the response
 // graphql({
 // 	schema,
 // 	source: "{ hello }",
+// 	rootValue,
+// }).then((response) => {
+// 	console.log(response);
+// });
+
+// graphql({
+// 	schema,
+// 	source: "{ hi }",
 // 	rootValue,
 // }).then((response) => {
 // 	console.log(response);
