@@ -16,7 +16,7 @@ var root = {
 		return "Hello world!";
 	},
 	hi: () => {
-		return "Hi world!";
+		return "Hi there, world!";
 	},
 };
 
