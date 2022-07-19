@@ -2,21 +2,62 @@ var express = require("express");
 var { graphqlHTTP } = require("express-graphql");
 var { buildSchema } = require("graphql");
 
+// input MessageInput {
+// 	content: String
+// 	author: String
+// }
+
+// type Message {
+// 	id: ID!
+// 	content: String
+// 	author: String
+// }
+
+// type Query {
+// 	getMessage(id: ID!): Message
+// }
+
+// type Mutation {
+// 	createMessage(input: MessageInput): Message
+// 	updateMessage(id: ID!, input: MessageInput): Message
+// }
+
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
-  type Query {
-    hello: String,
-    hi: String,
-  }
+	input StudentInput {
+		id: ID!
+		name: String!
+		course: String!
+	}
+
+	type Student {
+		id: ID!
+		name: String!
+		course: String!
+	}
+
+	type Query {
+		getStudent(id: ID!): Student
+		getAllStudents: [Student]
+	}
+
+	type Mutation {
+		registerStudent(student: StudentInput): Student
+	}
 `);
 
 // The root provides a resolver function for each API endpoint
+let fakeDB = {};
 var root = {
-	hello: () => {
-		return "Hello world!";
+	getStudent: ({ id }) => {
+		return fakeDB[id];
 	},
-	hi: () => {
-		return "Hi there, world!";
+	getAllStudents: () => {
+		return Object.entries(fakeDB).map((student) => student[1]);
+	},
+	registerStudent: ({ student }) => {
+		fakeDB[student.id] = student;
+		return fakeDB[student.id];
 	},
 };
 
