@@ -22,6 +22,8 @@ var { buildSchema } = require("graphql");
 // 	updateMessage(id: ID!, input: MessageInput): Message
 // }
 
+
+// must test
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
 	input StudentInput {
