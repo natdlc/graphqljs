@@ -23,7 +23,7 @@ var { buildSchema } = require("graphql");
 // }
 
 
-// must test
+// must test for a schema that's customized
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
 	input StudentInput {
